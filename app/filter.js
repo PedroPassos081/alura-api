@@ -7,7 +7,27 @@ function filtrarLivros() {
 
   let livrosFiltrados =
     categoria == "disponivel"
-      ? livros.filter((livro) => livro.quantidade > 0)
-      : livros.filter((livro) => livro.categoria == categoria);
+      ? filtrarPorDisponibilidade()
+      : filtrarPorCategoria(categoria);
   exibirLivros(livrosFiltrados);
+  if (categoria == "disponivel") {
+    const abacaxi = calcularValorTotalLivros(livrosFiltrados);
+    ExibirValorTotal(abacaxi);
+  }
+}
+
+function filtrarPorCategoria(categoria) {
+  return livros.filter((livro) => livro.categoria == categoria);
+}
+
+function filtrarPorDisponibilidade() {
+  return livros.filter((livro) => livro.quantidade > 0);
+}
+
+function ExibirValorTotal(abacaxi) {
+  valorTotal.innerHTML = `
+    <div class="livros__disponiveis">
+        <p>Todos os livros disponíveis por R$ <span id="valor">${abacaxi}</span></p>
+      </div>
+    `;
 }

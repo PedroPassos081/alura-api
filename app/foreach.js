@@ -1,6 +1,8 @@
 const inserirLivros = document.getElementById("livros");
+const valorTotal = document.getElementById("valor_total_livros_disponiveis");
 
 function exibirLivros(ListaDeLivros) {
+  valorTotal.innerHTML = "";
   inserirLivros.innerHTML = "";
   ListaDeLivros.forEach((livro) => {
     let disponibilidade =
